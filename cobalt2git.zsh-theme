@@ -126,7 +126,7 @@ prompt_context() {
 
     state+=" $(echo -ne "${content}" | sed -e 's/[[:space:]]*$//')"
   else
-       state= prompt_segment  black cyan "☁"
+       state= prompt_segment  black cyan "🌍"
   fi
       prompt_segment black default "%(!.%{%F{yellow}%}.)$state"
   fi
