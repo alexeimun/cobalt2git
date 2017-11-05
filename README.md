@@ -3,7 +3,7 @@ The known cobalt2 theme with new appearance for git
 
 * Get any git status in prompt
 
-![cobalgit2](https://farm2.staticflickr.com/1561/25621384632_13f34a007d_b.jpg)
+![cobalgit2](https://c1.staticflickr.com/5/4455/37479560894_51eb00d484_b.jpg)
 
 
 > ### How to Install
