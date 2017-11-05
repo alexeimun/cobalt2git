@@ -3,7 +3,7 @@ The known cobalt2 theme with new appearance for git
 
 * Get any git status in prompt
 
-![cobalgit2](https://c1.staticflickr.com/5/4455/37479560894_51eb00d484_b.jpg)
+![cobalgit2](https://github.com/alexeimun/cobalt2git/blob/master/terminal.png?raw=true)
 
 
 > ### How to Install
@@ -16,4 +16,5 @@ The known cobalt2 theme with new appearance for git
 
 > ### Recomendations
 
->> The theme requires the powerline fonts to work fine in the terminal
+>> The theme requires the [Fira Code Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v1.1.0/FiraCode.zip)
+ to work fine in the terminal
