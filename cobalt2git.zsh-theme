@@ -25,7 +25,7 @@
 ## Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 CURRENT_BG='NONE'
-SEGMENT_SEPARATOR=''
+SEGMENT_SEPARATOR='\ue0c0  '
 
 ## huh dont need this
 collapse_pwd() {
@@ -74,17 +74,17 @@ prompt_context() {
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    state=""
+		state="\uf113"
 
     #Custom
     local git_status="$(git status --porcelain 2> /dev/null)"
 
-    if [[ $git_status =~ ($'\n'|^).M ]]; then local has_modifications=""; fi
-    if [[ $git_status =~ ($'\n'|^)M ]]; then local has_modifications_cached=""; fi
-    if [[ $git_status =~ ($'\n'|^)A ]]; then local has_adds=""; fi
-    if [[ $git_status =~ ($'\n'|^).D ]]; then local has_deletions=""; fi
-    if [[ $git_status =~ ($'\n'|^)D ]]; then local has_deletions_cached=""; fi
-    if [[ $git_status =~ ($'\n'|^)[MAD] && ! $git_status =~ ($'\n'|^).[MAD\?] ]]; then local ready_to_commit=""; fi
+    if [[ $git_status =~ ($'\n'|^).M ]]; then local has_modifications="\uf040"; fi
+    if [[ $git_status =~ ($'\n'|^)M ]]; then local has_modifications_cached="\uf4a5"; fi
+    if [[ $git_status =~ ($'\n'|^)A ]]; then local has_adds="\uf067"; fi
+    if [[ $git_status =~ ($'\n'|^).D ]]; then local has_deletions="\uf068"; fi
+    if [[ $git_status =~ ($'\n'|^)D ]]; then local has_deletions_cached="\uf068"; fi
+    if [[ $git_status =~ ($'\n'|^)[MAD] && ! $git_status =~ ($'\n'|^).[MAD\?] ]]; then local ready_to_commit="\uf417"; fi
 
  #Modification counts
     local number_of_modified_files=$(grep -c "^ M" <<< "${git_status}")
@@ -100,16 +100,16 @@ prompt_context() {
 
   #Untracked files counts
       local number_of_untracked_files=$(\grep -c "^??" <<< "${git_status}")
-    if [[ $number_of_untracked_files -gt 0 ]]; then local has_untracked_files=""; fi
+    if [[ $number_of_untracked_files -gt 0 ]]; then local has_untracked_files="\ue275"; fi
     if [[ $number_of_untracked_files -gt 1 ]]; then  has_untracked_files+=":$number_of_untracked_files"; fi
 
     ##Tags
     local tag_at_current_commit=$(git describe --exact-match --tags $(git rev-parse HEAD 2> /dev/null) 2> /dev/null)
-    if [[ -n $tag_at_current_commit ]]; then local is_on_a_tag=""; fi
+    if [[ -n $tag_at_current_commit ]]; then local is_on_a_tag="\uf02b"; fi
 
     ## Stashes
     local number_of_stashes="$(git stash list -n1 2> /dev/null | wc -l | sed -e 's/^[[:space:]]*//')"
-    if [[ $number_of_stashes -gt 1 ]]; then local has_stashes=" +$number_of_stashes"; fi
+    if [[ $number_of_stashes -gt 1 ]]; then local has_stashes="\uf005+$number_of_stashes"; fi
 
       local content=" "
   #Filling
@@ -126,7 +126,7 @@ prompt_context() {
 
     state+=" $(echo -ne "${content}" | sed -e 's/[[:space:]]*$//')"
   else
-       state= prompt_segment  black cyan "🌍"
+       state= prompt_segment  black cyan "🎲"     
   fi
       prompt_segment black default "%(!.%{%F{yellow}%}.)$state"
   fi
